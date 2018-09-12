@@ -1,0 +1,47 @@
+{
+    "name": "with-timeout",
+    "version": "0.0.1",
+    "description": "Add a timeout to an asynchronous function",
+    "main": "lib/index.js",
+    "types": "lib/index.d.ts",
+    "repository": "https://github.com/alsiola/with-timeout.git",
+    "author": "Alex Young <alex.young@hive.hr>",
+    "license": "MIT",
+    "scripts": {
+        "test": "NODE_ENV=test jest",
+        "test:watch": "NODE_ENV=test jest --watch",
+        "test:coverage": "NODE_ENV=test jest --coverage",
+        "lint": "tslint -c tslint.json 'src/**/*.ts' 'test/**/*.ts'",
+        "build": "yarn test && yarn lint && rimraf lib && tsc",
+        "prepublishOnly": "yarn build"
+    },
+    "devDependencies": {
+        "@types/jest": "^23.3.2",
+        "jest": "^23.6.0",
+        "prettier": "^1.14.2",
+        "ts-jest": "^23.1.4",
+        "tslint": "^5.11.0",
+        "typescript": "^3.0.3"
+    },
+    "jest": {
+        "transform": {
+            "^.+\\.tsx?$": "ts-jest"
+        },
+        "testPathIgnorePatterns": [
+            "/node_modules/",
+            "/lib/",
+            "/demo/"
+        ],
+        "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+        "moduleFileExtensions": [
+            "ts",
+            "tsx",
+            "js",
+            "jsx",
+            "json"
+        ],
+        "collectCoverageFrom": [
+            "src/**/*"
+        ]
+    }
+}
