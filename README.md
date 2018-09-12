@@ -21,7 +21,7 @@ Add a timeout to a node readFile operation:
 
     const TIMEOUT_MS = 1000;
 
-    const readFileWithTimeout = withTimeout(readFile, TIMEOUT_MS);
+    const readFileWithTimeout = withTimeout(promisify(readFile), TIMEOUT_MS);
 
     readFileWithTimeout("./filename.txt")
         .then(file => { /* Do something */ })
