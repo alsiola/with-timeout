@@ -6,6 +6,8 @@ function delay(ms: number): Promise<typeof TIMED_OUT> {
     return new Promise(resolve => setTimeout(() => resolve(TIMED_OUT), ms));
 }
 
+// Added a comment
+
 export class TimeoutError extends Error {
     constructor() {
         super("TIMED_OUT");
