@@ -1,6 +1,6 @@
 export type F1<T, U> = (a: T) => Promise<U>;
 
-export const TIMED_OUT = "TIMED_OUT";
+const TIMED_OUT = "TIMED_OUT";
 
 function delay(ms: number): Promise<typeof TIMED_OUT> {
     return new Promise(resolve => setTimeout(() => resolve(TIMED_OUT), ms));
@@ -10,6 +10,12 @@ export class TimeoutError extends Error {
     constructor() {
         super("TIMED_OUT");
     }
+}
+
+export function isTimeoutError(
+    error: Error | TimeoutError
+): error is TimeoutError {
+    return error.message === TIMED_OUT;
 }
 
 export function withTimeout<T, U>(fn: F1<T, U>, timeoutMs: number): F1<T, U> {
