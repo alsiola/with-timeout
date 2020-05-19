@@ -31,6 +31,15 @@ describe("with-timeout", () => {
         return expect(rejectFn("fails")).rejects.toBe("fails");
     });
 
+    it("passes arguments for functions with arity > 1", () => {
+        const fn = withTimeout(
+            (a: string, b: number) => new Promise(r => r([a, b])),
+            1000
+        );
+
+        expect(fn("test", 5)).resolves.toEqual(["test", 5]);
+    });
+
     it("resolves or time out correctly across multiple uses", () => {
         return Promise.all([
             expect(resolveFn("test")).resolves.toEqual("test"),
